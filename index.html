@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elza+</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontes do Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container-app">
+        <!-- CABEÇALHO PRINCIPAL -->
+        <header>
+            <div class="logo-escola">
+                <i class="fas fa-graduation-cap"></i>
+                <div>
+                    <h1>Elza+</h1>
+                    <p>Comunicação Integrada</p>
+                </div>
+            </div>
+            <nav class="nav-principal">
+                <button class="btn-nav ativo" data-secao="inicio">
+                    <i class="fas fa-home"></i> Início
+                </button>
+                <button class="btn-nav" data-secao="estudante">
+                    <i class="fas fa-user-graduate"></i> Estudante
+                </button>
+                <button class="btn-nav" data-secao="professor">
+                    <i class="fas fa-chalkboard-user"></i> Professor
+                </button>
+            </nav>
+        </header>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main>
+            <!-- ========== SEÇÃO: PÁGINA INICIAL ========== -->
+            <section id="inicio" class="secao ativa">
+                <div class="container secao-publica">
+                    <!-- Título -->
+                    <h2 class="titulo-secao">
+                        <i class="fas fa-newspaper"></i>
+                        Bem-vindo ao Elza+
+                    </h2>
+
+                    <!-- Notícias -->
+                    <div class="secao-conteudo" id="container-noticias">
+                        <!-- Gerado dinamicamente -->
+                    </div>
+
+                    <!-- Calendário Público -->
+                    <h2 class="titulo-secao" style="margin-top: 3rem;">
+                        <i class="fas fa-calendar-alt"></i>
+                        Calendário de Eventos
+                    </h2>
+
+                    <div class="calendario-publica">
+                        <div class="calendario-cabecalho">
+                            <button id="btn-mes-anterior">
+                                <i class="fas fa-chevron-left"></i> Anterior
+                            </button>
+                            <h3 class="calendario-mes-ano" id="mes-ano-publica"></h3>
+                            <button id="btn-mes-proximo">
+                                Próximo <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <div class="calendario-dias" id="calendario-publica-dias">
+                            <!-- Gerado dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Horários da Biblioteca -->
+                    <h2 class="titulo-secao" style="margin-top: 3rem;">
+                        <i class="fas fa-book"></i>
+                        Biblioteca
+                    </h2>
+
+                    <div class="biblioteca-card">
+                        <div class="biblioteca-titulo">
+                            <i class="fas fa-clock"></i>
+                            Horários de Funcionamento
+                        </div>
+                        <div class="biblioteca-horarios" id="biblioteca-horarios">
+                            <!-- Gerado dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SEÇÃO: ÁREA DO ESTUDANTE ========== -->
+            <section id="estudante" class="secao">
+                <!-- Login do Estudante -->
+                <div id="tela-login-estudante" class="tela-login">
+                    <div class="formulario-login">
+                        <h2>
+                            <i class="fas fa-user-graduate"></i>
+                            Acesso Estudante
+                        </h2>
+                        <p>Digite seu número de matrícula</p>
+
+                        <div class="alerta alerta-info" id="alerta-login-estudante"></div>
+
+                        <form id="formulario-login-estudante">
+                            <div class="input-group">
+                                <label for="matricula">Número de Matrícula</label>
+                                <input
+                                    type="text"
+                                    id="matricula"
+                                    placeholder="Ex: 20230001"
+                                    required
+                                >
+                            </div>
+                            <button type="submit" class="botao" style="width: 100%;">
+                                <i class="fas fa-sign-in-alt"></i> Entrar
+                            </button>
+                        </form>
+
+                        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--cor-borda);">
+                            <p style="font-size: 0.9rem; color: #999; margin-bottom: 1rem;">
+                                <strong>Matrículas de teste:</strong>
+                            </p>
+                            <p style="font-size: 0.85rem; color: #999;">
+                                20230001, 4544670704, 20230324
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel do Estudante -->
+                <div id="painel-estudante" style="display: none;">
+                    <div class="container">
+                        <!-- Cabeçalho do Painel -->
+                        <div class="painel-usuario">
+                            <div class="cabecalho-usuario">
+                                <div class="info-usuario">
+                                    <div class="avatar" id="avatar-estudante">👨</div>
+                                    <div class="dados-usuario">
+                                        <h3 id="nome-estudante"></h3>
+                                        <p id="turma-estudante"></p>
+                                    </div>
+                                </div>
+                                <button class="botao botao-pequeno btn-sair" id="btn-sair-estudante">
+                                    <i class="fas fa-sign-out-alt"></i> Sair
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Calendário e Lembretes -->
+                        <div class="calendarios-container">
+                            <!-- Calendário Pessoal -->
+                            <div class="calendario-publica">
+                                <div class="calendario-cabecalho">
+                                    <button id="btn-mes-anterior-estudante">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <h3 class="calendario-mes-ano" id="mes-ano-estudante"></h3>
+                                    <button id="btn-mes-proximo-estudante">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+
+                                <div class="calendario-dias" id="calendario-estudante-dias">
+                                    <!-- Gerado dinamicamente -->
+                                </div>
+                            </div>
+
+                            <!-- Lembretes do Dia -->
+                            <div class="lista-lembretes">
+                                <h3 style="color: var(--cor-primaria); margin-bottom: 1rem;">
+                                    <i class="fas fa-bell"></i> Lembretes
+                                </h3>
+                                <div id="container-lembretes">
+                                    <p style="color: #999; text-align: center; padding: 2rem;">
+                                        Selecione um dia no calendário para ver os lembretes
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horário de Aulas -->
+                        <div class="horario-aulas">
+                            <h3 style="color: var(--cor-primaria); margin-bottom: 1rem;">
+                                <i class="fas fa-clock"></i> Horário de Aulas
+                            </h3>
+                            <table class="tabela-horarios" id="tabela-horarios-estudante">
+                                <!-- Gerado dinamicamente -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SEÇÃO: ÁREA DO PROFESSOR ========== -->
+            <section id="professor" class="secao">
+                <!-- Login do Professor -->
+                <div id="tela-login-professor" class="tela-login">
+                    <div class="formulario-login">
+                        <h2>
+                            <i class="fas fa-chalkboard-user"></i>
+                            Acesso Professor
+                        </h2>
+                        <p>Faça seu login com credenciais</p>
+
+                        <div class="alerta alerta-info" id="alerta-login-professor"></div>
+
+                        <form id="formulario-login-professor">
+                            <div class="input-group">
+                                <label for="usuario">Usuário</label>
+                                <input
+                                    type="text"
+                                    id="usuario"
+                                    placeholder="Ex: professor"
+                                    required
+                                >
+                            </div>
+                            <div class="input-group">
+                                <label for="senha">Senha</label>
+                                <input
+                                    type="password"
+                                    id="senha"
+                                    placeholder="••••••••"
+                                    required
+                                >
+                            </div>
+                            <button type="submit" class="botao" style="width: 100%;">
+                                <i class="fas fa-sign-in-alt"></i> Entrar
+                            </button>
+                        </form>
+
+                        <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--cor-borda);">
+                            <p style="font-size: 0.9rem; color: #999; margin-bottom: 1rem;">
+                                <strong>Credenciais de teste:</strong>
+                            </p>
+                            <p style="font-size: 0.85rem; color: #999;">
+                                Usuário: <strong>professor1</strong><br>
+                                Senha: <strong>123456</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel do Professor -->
+                <div id="painel-professor" style="display: none;">
+                    <div class="container">
+                        <!-- Cabeçalho do Painel -->
+                        <div class="painel-usuario">
+                            <div class="cabecalho-usuario">
+                                <div class="info-usuario">
+                                    <div class="avatar" id="avatar-professor">👨‍🏫</div>
+                                    <div class="dados-usuario">
+                                        <h3 id="nome-professor"></h3>
+                                        <p>Área: Professor</p>
+                                    </div>
+                                </div>
+                                <button class="botao botao-pequeno btn-sair" id="btn-sair-professor">
+                                    <i class="fas fa-sign-out-alt"></i> Sair
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Formulário de Novo Aviso -->
+                        <div class="formulario-professor">
+                            <h3 style="color: var(--cor-primaria); margin-bottom: 1.5rem;">
+                                <i class="fas fa-plus-circle"></i> Enviar Novo Aviso
+                            </h3>
+
+                            <div class="alerta alerta-sucesso" id="alerta-novo-aviso"></div>
+
+                            <form id="formulario-novo-aviso">
+                                <div class="grid-formulario">
+                                    <div class="input-group">
+                                        <label for="titulo-aviso">Título *</label>
+                                        <input
+                                            type="text"
+                                            id="titulo-aviso"
+                                            placeholder="Ex: Prova de Matemática"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label for="data-aviso">Data *</label>
+                                        <input
+                                            type="date"
+                                            id="data-aviso"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <label for="descricao-aviso">Descrição *</label>
+                                    <textarea
+                                        id="descricao-aviso"
+                                        placeholder="Detalhe as informações do aviso..."
+                                        required
+                                    ></textarea>
+                                </div>
+
+                                <div class="grid-formulario">
+                                    <div class="input-group">
+                                        <label for="tipo-aviso">Tipo de Aviso *</label>
+                                        <select id="tipo-aviso" required>
+                                            <option value="">Selecione...</option>
+                                            <option value="prova">Prova</option>
+                                            <option value="trabalho">Trabalho</option>
+                                            <option value="atividade">Atividade</option>
+                                            <option value="aviso">Aviso</option>
+                                            <option value="recado">Recado</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <label for="turma-aviso">Turma *</label>
+                                        <select id="turma-aviso" required>
+                                            <option value="">Selecione...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="checkbox-group">
+                                    <input
+                                        type="checkbox"
+                                        id="enviar-aluno-especifico"
+                                        name="especifico"
+                                    >
+                                    <label for="enviar-aluno-especifico" style="margin: 0;">
+                                        Enviar para aluno específico?
+                                    </label>
+                                </div>
+
+                                <div class="input-group" id="grupo-matricula-professor" style="display: none; margin-top: 1rem;">
+                                    <label for="matricula-aluno">Matrícula do Aluno</label>
+                                    <input
+                                        type="text"
+                                        id="matricula-aluno"
+                                        placeholder="Ex: 20230001"
+                                    >
+                                </div>
+
+                                <button type="submit" class="botao" style="width: 100%; margin-top: 1rem;">
+                                    <i class="fas fa-paper-plane"></i> Enviar Aviso
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Lista de Avisos Enviados -->
+                        <div style="margin-top: 2rem;">
+                            <h3 style="color: var(--cor-primaria); margin-bottom: 1.5rem;">
+                                <i class="fas fa-list"></i> Avisos Enviados
+                            </h3>
+
+                            <div style="overflow-x: auto;">
+                                <table class="tabela-avisos" id="tabela-avisos-professor">
+                                    <thead>
+                                        <tr>
+                                            <th>Título</th>
+                                            <th>Data</th>
+                                            <th>Tipo</th>
+                                            <th>Turma/Aluno</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="corpo-tabela-avisos">
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; padding: 2rem;">
+                                                Nenhum aviso enviado ainda
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL para detalhes de eventos -->
+    <div id="modal-evento" class="modal">
+        <div class="modal-conteudo">
+            <div class="modal-cabecalho">
+                <h2>Detalhes do Evento</h2>
+                <button class="fechar-modal" id="btn-fechar-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="conteudo-modal-evento"></div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================
+        // SISTEMA DE GERENCIAMENTO ESCOLAR - PORTAL ESCOLAR
+        // =====================================================
+        // Este sistema gerencia a comunicação entre escola, pais,
+        // alunos e professores através de um portal web responsivo.
+        // Toda a lógica está implementada em JavaScript puro com
+        // armazenamento persistente em IndexedDB, com cache local para a interface.
+        // =====================================================
+
+        // ============================================
+        // CONFIGURAÇÃO INICIAL E DADOS
+        // ============================================
+
+        /**
+         * Classe para gerenciar dados em um banco NoSQL local (IndexedDB)
+         * Mantém a API síncrona usada pelas telas e persiste as alterações
+         */
+        class GerenciadorDados {
+            constructor() {
+                this.chaves = {
+                    alunos: 'portal_alunos',
+                    turmas: 'portal_turmas',
+                    horarios: 'portal_horarios',
+                    noticias: 'portal_noticias',
+                    eventos: 'portal_eventos',
+                    professores: 'portal_professores',
+                    avisos: 'portal_avisos',
+                    biblioteca: 'portal_biblioteca'
+                };
+                this.nomeBanco = 'portal_escolar_db';
+                this.nomeColecao = 'registros';
+                this.cache = {};
+                Object.values(this.chaves).forEach(chave => {
+                    const registro = localStorage.getItem(chave);
+                    if (registro) {
+                        this.cache[chave] = JSON.parse(registro);
+                    }
+                });
+
+                this.inicializarDados();
+                this.pronto = this.inicializarBanco();
+            }
+
+            inicializarBanco() {
+                return new Promise((resolver, rejeitar) => {
+                    const requisicao = indexedDB.open(this.nomeBanco, 1);
+
+                    requisicao.onupgradeneeded = evento => {
+                        evento.target.result.createObjectStore(this.nomeColecao, { keyPath: 'chave' });
+                    };
+
+                    requisicao.onsuccess = evento => {
+                        this.banco = evento.target.result;
+                        const transacao = this.banco.transaction(this.nomeColecao, 'readwrite');
+                        const colecao = transacao.objectStore(this.nomeColecao);
+                        colecao.getAll().onsuccess = consulta => {
+                            const registros = consulta.target.result;
+                            const chavesPersistidas = new Set(registros.map(registro => registro.chave));
+
+                            registros.forEach(registro => {
+                                this.cache[registro.chave] = registro.valor;
+                                localStorage.setItem(registro.chave, JSON.stringify(registro.valor));
+                            });
+
+                            Object.entries(this.cache).forEach(([chave, valor]) => {
+                                if (!chavesPersistidas.has(chave)) {
+                                    colecao.put({ chave, valor });
+                                }
+                            });
+                        };
+                        transacao.oncomplete = () => resolver();
+                        transacao.onerror = () => rejeitar(transacao.error);
+                    };
+                    requisicao.onerror = () => rejeitar(requisicao.error);
+                }).catch(erro => {
+                    console.error('Erro ao abrir o banco de dados:', erro);
+                });
+            }
+
+            /**
+             * Inicializa os dados padrão
+             * Se os dados já existem, não sobrescreve
+             */
+            inicializarDados() {
+                // Dados dos alunos
+                const alunosPadrao = [
+                    { matricula: "20230001", nome: "Ana Silva", serie: "6º", turma: "A" },
+                    { matricula: "20230324", nome: "marcos", serie: "6º", turma: "A" },
+                    { matricula: "4544670704", nome: "olivia", serie: "1º", turma: "Médio A" }
+                ];
+
+                // Turmas disponíveis
+                const tumasPadrao = ["6º 1", "1º Médio 1", ]
+
+                // Horários de aula por turma
+                const horariosPadrao = {
+                    "6º A": {
+                        "Segunda": [
+                            "07:30 - 08:15 | Matemática",
+                            "08:15 - 09:00 | Português",
+                            "09:15 - 10:00 | Ciências",
+                            "10:00 - 10:45 | História",
+                            "10:45 - 11:30 | Educação Física"
+                        ],
+                        "Terça": [
+                            "07:30 - 08:15 | Português",
+                            "08:15 - 09:00 | Matemática",
+                            "09:15 - 10:00 | Inglês",
+                            "10:00 - 10:45 | Arte",
+                            "10:45 - 11:30 | Educação Física"
+                        ],
+                        "Quarta": [
+                            "07:30 - 08:15 | Ciências",
+                            "08:15 - 09:00 | História",
+                            "09:15 - 10:00 | Matemática",
+                            "10:00 - 10:45 | Português",
+                            "10:45 - 11:30 | Educação Física"
+                        ],
+                        "Quinta": [
+                            "07:30 - 08:15 | Educação Física",
+                            "08:15 - 09:00 | Arte",
+                            "09:15 - 10:00 | Inglês",
+                            "10:00 - 10:45 | Ciências",
+                            "10:45 - 11:30 | Matemática"
+                        ],
+                        "Sexta": [
+                            "07:30 - 08:15 | Português",
+                            "08:15 - 09:00 | Ciências",
+                            "09:15 - 10:00 | História",
+                            "10:00 - 10:45 | Educação Física",
+                            "10:45 - 11:30 | Matemática"
+                        ]
+                    },
+                    "1º Médio 1": {
+                        "Segunda": [
+                            "08:00 - 08:45 | banco de dados ",
+                            "08:45 - 09:30 | logica de progamação",
+                            "09:30 - 10:15 | logica de progamação",
+                            "10:15 - 11:00 | educaçãp física",
+                            "11:00 - 11:55 | Física"
+                        ],
+                        "Terça": [
+                            "07:00 - 07:50 | geografia",
+                            "07:50 - 08:40 | história",
+                            "08:50 - 09:40 | Português",
+                            "09:40 - 10:30 | Biologia",
+                            "10:15 - 11:55 | Química"
+                        ],
+                        "Quarta": [
+                            "07:00 - 07:50 | montagem e manutenção",
+                            "07:50 - 08:40 | montagem e manutenção",
+                            "08:50 - 09:40 | inglês",
+                            "09:40 - 10:30 | inglês",
+                            "10:15 - 11:55 |  Matemática"
+                        ],
+                        "Quinta": [
+                            "07:00 - 07:50 | filosofia",
+                            "07:50 - 08:40 | introdução a computação",
+                            "08:50 - 09:40 | introdução a computação",
+                            "09:40 - 10:30 | artes",
+                            "10:15 - 11:55 | Português"
+                        ],
+                        "Sexta": [
+                            "08:00 - 08:45 | banco de dados",
+                            "08:45 - 09:30 | banco de dados",
+                            "09:30 - 10:15 | Matemática",
+                            "10:30 - 11:15 | sociologia",
+                            "11:15 - 11:55 | Inglês aplicado"
+                        ]
+                    }
+                };
+
+                // Notícias públicas
+                const noticiasPadrao = [
+                    {
+                        id: 1,
+                        titulo: "Esse ano o gremio volta",
+                        data: "2026-08-19",
+                        resumo: "esse ano tem votação do gremio,e alguns aluno já estão criando chapas e campanhas que tipo de gremio será que vamos ter?!"
+                    },
+                    {
+                        id: 2,
+                        titulo: "fim do segundo trimestre chegando",
+                        data: "2026-08-19",
+                        resumo: "Atenção alunos ,vejam se estão sem alguma coisa para entregar,pois o fim do trimestre está chegando e se preparem as provas estão vindo!."
+                    },
+                    {
+                        id: 3,
+                        titulo: "A biblioteca mudou",
+                        data: "2026-08-19",
+                        resumo: "recentimente perto do começo das ferias de julho ouve uma mudança de local da biblioteca,agora perto da saida para o patio e ginasio,acreditasse que essa aumentou as visitas na biblioteca."
+                    }
+                ];
+
+                // Eventos públicos (calendar events)
+                const eventosPadrao = [
+                    { data: "2026-08-11", nome: "Dia do estudante", descricao: " valorizar a importância da educação para o desenvolvimento pessoal e social, além de homenagear todos que dedicam seu tempo ao aprendizad" },
+                    { data: "2026-09-07", nome: "Independência do Brasil", descricao: "Feriado nacional" },
+                    { data: "2026-09-15", nome: "Gincana Escolar", descricao: "Competição entre turmas com diversas atividades" },
+                    { data: "2026-09-20", nome: "Prova Bimestral", descricao: "Avaliação bimestral de todas as disciplinas" }
+                ];
+
+                // Professores cadastrados
+                const professoresPadrao = [
+                    { usuario: "professor1", senha: "123456", nome: "João Silva" },
+                    { usuario: "professor2", senha: "senha123", nome: "Maria Santos" }
+                ];
+
+                // Horários da biblioteca
+                const bibliotecaPadrao = {
+                    "Segunda": "08:00 - 17:00",
+                    "Terça": "08:00 - 17:00",
+                    "Quarta": "08:00 - 11:15",
+                    "Quinta": "08:00 - 17:00",
+                    "Sexta": "Fechado",
+                    "Sábado": "Fechado",
+                    "Domingo": "Fechado"
+                };
+
+                // Salva os dados se não existirem
+                if (!localStorage.getItem(this.chaves.alunos)) {
+                    this.salvar(this.chaves.alunos, alunosPadrao);
+                }
+                if (!localStorage.getItem(this.chaves.turmas)) {
+                    this.salvar(this.chaves.turmas, tumasPadrao);
+                }
+                if (!localStorage.getItem(this.chaves.horarios)) {
+                    this.salvar(this.chaves.horarios, horariosPadrao);
+                }
+                if (!localStorage.getItem(this.chaves.noticias)) {
+                    this.salvar(this.chaves.noticias, noticiasPadrao);
+                }
+                if (!localStorage.getItem(this.chaves.eventos)) {
+                    this.salvar(this.chaves.eventos, eventosPadrao);
+                }
+                if (!localStorage.getItem(this.chaves.professores)) {
+                    this.salvar(this.chaves.professores, professoresPadrao);
+                }
+                if (!localStorage.getItem(this.chaves.avisos)) {
+                    this.salvar(this.chaves.avisos, []);
+                }
+                if (!localStorage.getItem(this.chaves.biblioteca)) {
+                    this.salvar(this.chaves.biblioteca, bibliotecaPadrao);
+                }
+            }
+
+            /**
+             * Salva dados no localStorage (serializa para JSON)
+             * @param {string} chave - Chave do localStorage
+             * @param {any} dados - Dados a serem salvos
+             */
+            salvar(chave, dados) {
+                try {
+                    this.cache[chave] = dados;
+                    localStorage.setItem(chave, JSON.stringify(dados));
+                    if (this.banco) {
+                        const transacao = this.banco.transaction(this.nomeColecao, 'readwrite');
+                        transacao.objectStore(this.nomeColecao).put({ chave, valor: dados });
+                    }
+                } catch (erro) {
+                    console.error("Erro ao salvar dados:", erro);
+                }
+            }
+
+            /**
+             * Recupera dados do cache ou do localStorage
+             * @param {string} chave - Chave do localStorage
+             * @returns {any} - Dados recuperados ou null se não existirem
+             */
+            obter(chave) {
+                try {
+                    if (Object.prototype.hasOwnProperty.call(this.cache, chave)) {
+                        return this.cache[chave];
+                    }
+                    const dados = localStorage.getItem(chave);
+                    this.cache[chave] = dados ? JSON.parse(dados) : null;
+                    return this.cache[chave];
+                } catch (erro) {
+                    console.error("Erro ao obter dados:", erro);
+                    return null;
+                }
+            }
+
+            /**
+             * Deleta dados do banco e do cache local
+             * @param {string} chave - Chave do localStorage
+             */
+            deletar(chave) {
+                try {
+                    delete this.cache[chave];
+                    localStorage.removeItem(chave);
+                    if (this.banco) {
+                        const transacao = this.banco.transaction(this.nomeColecao, 'readwrite');
+                        transacao.objectStore(this.nomeColecao).delete(chave);
+                    }
+                } catch (erro) {
+                    console.error("Erro ao deletar dados:", erro);
+                }
+            }
+        }
+
+        // Instância global do gerenciador de dados
+        const dados = new GerenciadorDados();
+
+        // ============================================
+        // FUNÇÕES DE UTILIDADE
+        // ============================================
+
+        /**
+         * Formata uma data para o formato DD/MM/YYYY
+         * @param {Date|string} data - Data a ser formatada
+         * @returns {string} - Data formatada
+         */
+        function formatarData(data) {
+            if (typeof data === 'string') {
+                data = new Date(data + 'T00:00:00');
+            }
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = data.getFullYear();
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        /**
+         * Obtém o nome do mês por número
+         * @param {number} mes - Número do mês (0-11)
+         * @returns {string} - Nome do mês
+         */
+        function obterNomeMes(mes) {
+            const meses = [
+                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+            ];
+            return meses[mes];
+        }
+
+        /**
+         * Obtém o nome do dia da semana
+         * @param {number} dia - Número do dia (0-6)
+         * @returns {string} - Nome do dia
+         */
+        function obterNomeDia(dia) {
+            const dias = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+            return dias[dia];
+        }
+
+        /**
+         * Exibe um alerta na tela
+         * @param {string} elementoId - ID do elemento de alerta
+         * @param {string} mensagem - Mensagem a exibir
+         * @param {string} tipo - Tipo do alerta ('sucesso', 'erro', 'info')
+         * @param {number} duracao - Tempo em ms para desaparecer (0 = não desaparece)
+         */
+        function exibirAlerta(elementoId, mensagem, tipo = 'info', duracao = 4000) {
+            const elemento = document.getElementById(elementoId);
+            if (!elemento) return;
+
+            elemento.textContent = mensagem;
+            elemento.className = `alerta alerta-${tipo} visivel`;
+
+            if (duracao > 0) {
+                setTimeout(() => {
+                    elemento.classList.remove('visivel');
+                }, duracao);
+            }
+        }
+
+        /**
+         * Limpa um formulário (reseta valores)
+         * @param {string} formularioId - ID do formulário
+         */
+        function limparFormulario(formularioId) {
+            const formulario = document.getElementById(formularioId);
+            if (formulario) {
+                formulario.reset();
+            }
+        }
+
+        /**
+         * Muda a exibição de uma seção
+         * @param {string} secaoId - ID da seção a exibir
+         */
+        function mostrarSecao(secaoId) {
+            // Oculta todas as seções
+            document.querySelectorAll('.secao').forEach(secao => {
+                secao.classList.remove('ativa');
+            });
+
+            // Remove classe 'ativo' de todos os botões de navegação
+            document.querySelectorAll('.btn-nav').forEach(btn => {
+                btn.classList.remove('ativo');
+            });
+
+            // Mostra a seção específica
+            const secao = document.getElementById(secaoId);
+            if (secao) {
+                secao.classList.add('ativa');
+            }
+
+            // Marca botão de navegação como ativo
+            const botao = document.querySelector(`[data-secao="${secaoId}"]`);
+            if (botao) {
+                botao.classList.add('ativo');
+            }
+        }
+
+        // ============================================
+        // GERENCIAMENTO DE CALENDÁRIO
+        // ============================================
+
+        /**
+         * Classe para gerenciar calendários
+         * Gera calendário visual e gerencia navegação entre meses
+         */
+        class GerenciadorCalendario {
+            constructor() {
+                // Mês e ano atualmente exibidos
+                this.mesAtual = new Date().getMonth();
+                this.anoAtual = new Date().getFullYear();
+            }
+
+            /**
+             * Obtém o primeiro dia da semana de um mês
+             * @param {number} mes - Mês (0-11)
+             * @param {number} ano - Ano
+             * @returns {number} - Dia da semana (0-6)
+             */
+            obterPrimeiroDia(mes, ano) {
+                return new Date(ano, mes, 1).getDay();
+            }
+
+            /**
+             * Obtém a quantidade de dias do mês
+             * @param {number} mes - Mês (0-11)
+             * @param {number} ano - Ano
+             * @returns {number} - Quantidade de dias
+             */
+            obterDiasDoMes(mes, ano) {
+                return new Date(ano, mes + 1, 0).getDate();
+            }
+
+            /**
+             * Gera a markup HTML do calendário
+             * @param {number} mes - Mês (0-11)
+             * @param {number} ano - Ano
+             * @param {function} funcaoDiaComEvento - Função para verificar se dia tem evento
+             * @returns {string} - HTML do calendário
+             */
+            gerarCalendario(mes, ano, funcaoDiaComEvento = null) {
+                let html = '';
+
+                // Adiciona cabeçalho com dias da semana
+                const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
+                diasSemana.forEach(dia => {
+                    html += `<div class="dia-semana">${dia}</div>`;
+                });
+
+                const primeiroDia = this.obterPrimeiroDia(mes, ano);
+                const diasDoMes = this.obterDiasDoMes(mes, ano);
+
+                // Adiciona dias do mês anterior (espaço em branco)
+                const mesAnterior = mes === 0 ? 11 : mes - 1;
+                const anoAnterior = mes === 0 ? ano - 1 : ano;
+                const diasMesAnterior = this.obterDiasDoMes(mesAnterior, anoAnterior);
+
+                for (let i = primeiroDia - 1; i >= 0; i--) {
+                    html += `<div class="dia outro-mes">${diasMesAnterior - i}</div>`;
+                }
+
+                // Adiciona dias do mês atual
+                const hoje = new Date();
+                for (let dia = 1; dia <= diasDoMes; dia++) {
+                    const dataAtual = new Date(ano, mes, dia);
+                    const dataFormatada = dataAtual.toISOString().split('T')[0];
+                    const dataHoje = hoje.toISOString().split('T')[0];
+
+                    let classesDia = 'dia';
+                    if (dataFormatada === dataHoje) {
+                        classesDia += ' hoje';
+                    }
+
+                    let temEvento = '';
+                    if (funcaoDiaComEvento && funcaoDiaComEvento(dataFormatada)) {
+                        classesDia += ' com-evento';
+                        temEvento = `data-evento="${dataFormatada}"`;
+                    }
+
+                    html += `<div class="${classesDia}" data-data="${dataFormatada}" ${temEvento}>${dia}</div>`;
+                }
+
+                // Adiciona dias do próximo mês (espaço em branco)
+                const totalCelulas = Math.ceil((primeiroDia + diasDoMes) / 7) * 7;
+                for (let dia = 1; dia <= totalCelulas - (primeiroDia + diasDoMes); dia++) {
+                    html += `<div class="dia outro-mes">${dia}</div>`;
+                }
+
+                return html;
+            }
+
+            /**
+             * Avança para o próximo mês
+             */
+            proximoMes() {
+                this.mesAtual++;
+                if (this.mesAtual > 11) {
+                    this.mesAtual = 0;
+                    this.anoAtual++;
+                }
+            }
+
+            /**
+             * Volta para o mês anterior
+             */
+            mesAnterior() {
+                this.mesAtual--;
+                if (this.mesAtual < 0) {
+                    this.mesAtual = 11;
+                    this.anoAtual--;
+                }
+            }
+
+            /**
+             * Obtém a data formatada do mês/ano atual
+             * @returns {string} - String formatada como "Junho 2024"
+             */
+            obterMesAnoFormatado() {
+                return `${obterNomeMes(this.mesAtual)} ${this.anoAtual}`;
+            }
+        }
+
+        // Instâncias de calendário (uma para página pública, uma para estudante)
+        const calendarioPublico = new GerenciadorCalendario();
+        const calendarioEstudante = new GerenciadorCalendario();
+
+        // ============================================
+        // RENDERIZAÇÃO DA PÁGINA INICIAL (PÚBLICA)
+        // ============================================
+
+        /**
+         * Renderiza as notícias na página inicial
+         */
+        function renderizarNoticias() {
+            const container = document.getElementById('container-noticias');
+            const noticias = dados.obter(dados.chaves.noticias) || [];
+
+            container.innerHTML = noticias.map(noticia => `
+                <div class="noticia">
+                    <div class="noticia-imagem">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="noticia-corpo">
+                        <div class="noticia-data">${formatarData(noticia.data)}</div>
+                        <div class="noticia-titulo">${noticia.titulo}</div>
+                        <div class="noticia-resumo">${noticia.resumo}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Renderiza o calendário público
+         */
+        function renderizarCalendarioPublico() {
+            const eventos = dados.obter(dados.chaves.eventos) || [];
+            const datasComEventos = eventos.map(e => e.data);
+
+            // Função para verificar se uma data tem evento
+            const temEvento = (data) => datasComEventos.includes(data);
+
+            // Gera o calendário
+            const html = calendarioPublico.gerarCalendario(
+                calendarioPublico.mesAtual,
+                calendarioPublico.anoAtual,
+                temEvento
+            );
+
+            document.getElementById('calendario-publica-dias').innerHTML = html;
+            document.getElementById('mes-ano-publica').textContent = calendarioPublico.obterMesAnoFormatado();
+
+            // Adiciona event listeners aos dias
+            document.querySelectorAll('#calendario-publica-dias .dia').forEach(dia => {
+                if (dia.dataset.evento) {
+                    dia.addEventListener('click', function() {
+                        const data = this.dataset.evento;
+                        const eventosDia = eventos.filter(e => e.data === data);
+                        exibirModalEvento(eventosDia);
+                    });
+                }
+            });
+        }
+
+        /**
+         * Renderiza os horários da biblioteca
+         */
+        function renderizarBiblioteca() {
+            const container = document.getElementById('biblioteca-horarios');
+            const biblioteca = dados.obter(dados.chaves.biblioteca) || {};
+
+            container.innerHTML = Object.entries(biblioteca).map(([dia, horario]) => `
+                <div class="horario-item">
+                    <div class="horario-dia">${dia}</div>
+                    <div class="horario-tempo">${horario}</div>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Exibe um modal com detalhes dos eventos
+         * @param {array} eventos - Array de eventos da data
+         */
+        function exibirModalEvento(eventos) {
+            const modal = document.getElementById('modal-evento');
+            const conteudo = document.getElementById('conteudo-modal-evento');
+
+            let html = '<div>';
+            eventos.forEach(evento => {
+                html += `
+                    <div style="margin-bottom: 1.5rem;">
+                        <h3 style="color: var(--cor-primaria); margin-bottom: 0.5rem;">
+                            <i class="fas fa-calendar-check"></i> ${evento.nome}
+                        </h3>
+                        <p><strong>Data:</strong> ${formatarData(evento.data)}</p>
+                        <p><strong>Descrição:</strong> ${evento.descricao}</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            conteudo.innerHTML = html;
+            modal.classList.add('visivel');
+        }
+
+        /**
+         * Fecha o modal de eventos
+         */
+        function fecharModalEvento() {
+            const modal = document.getElementById('modal-evento');
+            modal.classList.remove('visivel');
+        }
+
+        // ============================================
+        // GERENCIAMENTO DA ÁREA DO ESTUDANTE
+        // ============================================
+
+        // Variável para manter o aluno logado
+        let alunoLogado = null;
+
+        /**
+         * Realiza o login do estudante
+         * @param {string} matricula - Número de matrícula
+         */
+        function fazerLoginEstudante(matricula) {
+            const alunos = dados.obter(dados.chaves.alunos) || [];
+            const aluno = alunos.find(a => a.matricula === matricula);
+
+            if (!aluno) {
+                exibirAlerta('alerta-login-estudante', 'Matrícula não encontrada!', 'erro');
+                return;
+            }
+
+            alunoLogado = aluno;
+            document.getElementById('tela-login-estudante').style.display = 'none';
+            document.getElementById('painel-estudante').style.display = 'block';
+
+            // Preenche os dados do aluno
+            document.getElementById('nome-estudante').textContent = aluno.nome;
+            document.getElementById('turma-estudante').textContent = `${aluno.serie} ${aluno.turma}`;
+
+            // Renderiza os componentes do painel
+            renderizarCalendarioEstudante();
+            renderizarHorarioAulas();
+            limparFormulario('formulario-login-estudante');
+            exibirAlerta('alerta-login-estudante', '', 'info', 0);
+        }
+
+        /**
+         * Faz logout do estudante
+         */
+        function fazerLogoutEstudante() {
+            alunoLogado = null;
+            document.getElementById('tela-login-estudante').style.display = 'block';
+            document.getElementById('painel-estudante').style.display = 'none';
+            limparFormulario('formulario-login-estudante');
+        }
+
+        /**
+         * Renderiza o calendário do estudante
+         */
+        function renderizarCalendarioEstudante() {
+            if (!alunoLogado) return;
+
+            const avisos = dados.obter(dados.chaves.avisos) || [];
+
+            // Filtra avisos que o aluno recebe (por turma ou individual)
+            const avisosDoAluno = avisos.filter(aviso => {
+                const turmaCompleta = `${alunoLogado.serie} ${alunoLogado.turma}`;
+                return aviso.turma === turmaCompleta || aviso.matriculaAluno === alunoLogado.matricula;
+            });
+
+            const datasComAvisos = avisosDoAluno.map(a => a.data);
+
+            // Função para verificar se data tem aviso
+            const temAviso = (data) => datasComAvisos.includes(data);
+
+            // Gera o calendário
+            const html = calendarioEstudante.gerarCalendario(
+                calendarioEstudante.mesAtual,
+                calendarioEstudante.anoAtual,
+                temAviso
+            );
+
+            document.getElementById('calendario-estudante-dias').innerHTML = html;
+            document.getElementById('mes-ano-estudante').textContent = calendarioEstudante.obterMesAnoFormatado();
+
+            // Adiciona event listeners aos dias
+            document.querySelectorAll('#calendario-estudante-dias .dia').forEach(dia => {
+                dia.addEventListener('click', function() {
+                    if (this.classList.contains('outro-mes')) return;
+                    const data = this.dataset.data;
+                    renderizarLembretesDia(data);
+                });
+            });
+        }
+
+        /**
+         * Renderiza os lembretes de um dia específico
+         * @param {string} data - Data no formato YYYY-MM-DD
+         */
+        function renderizarLembretesDia(data) {
+            if (!alunoLogado) return;
+
+            const avisos = dados.obter(dados.chaves.avisos) || [];
+            const turmaCompleta = `${alunoLogado.serie} ${alunoLogado.turma}`;
+
+            // Filtra avisos do dia para este aluno
+            const lembretesDodia = avisos.filter(aviso =>
+                aviso.data === data && (
+                    aviso.turma === turmaCompleta ||
+                    aviso.matriculaAluno === alunoLogado.matricula
+                )
+            );
+
+            const container = document.getElementById('container-lembretes');
+
+            if (lembretesDodia.length === 0) {
+                container.innerHTML = `
+                    <p style="color: #999; text-align: center; padding: 2rem;">
+                        Nenhum lembrete para este dia
+                    </p>
+                `;
+                return;
+            }
+
+            container.innerHTML = lembretesDodia.map(aviso => `
+                <div class="lembrete-item">
+                    <div class="lembrete-conteudo">
+                        <span class="lembrete-tipo ${aviso.tipo}">${aviso.tipo}</span>
+                        <div class="lembrete-titulo">${aviso.titulo}</div>
+                        <div class="lembrete-descricao">${aviso.descricao}</div>
+                        <div class="lembrete-data">
+                            <i class="fas fa-calendar"></i> ${formatarData(aviso.data)}
+                            <span style="margin-left: 1rem;">
+                                <i class="fas fa-user"></i> Prof. ${aviso.professor}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /**
+         * Renderiza a tabela de horário de aulas do estudante
+         */
+        function renderizarHorarioAulas() {
+            if (!alunoLogado) return;
+
+            const horarios = dados.obter(dados.chaves.horarios) || {};
+            const turmaCompleta = `${alunoLogado.serie} ${alunoLogado.turma}`;
+            const horariosDoAluno = horarios[turmaCompleta] || {};
+
+            const tabla = document.getElementById('tabela-horarios-estudante');
+
+            let html = '<thead><tr><th>Dia</th><th>Horário</th></tr></thead><tbody>';
+
+            Object.entries(horariosDoAluno).forEach(([dia, aulas]) => {
+                html += `<tr><td><strong>${dia}</strong></td><td>`;
+                aulas.forEach(aula => {
+                    html += `<div class="horario-materia">${aula}</div>`;
+                });
+                html += '</td></tr>';
+            });
+
+            html += '</tbody>';
+            tabla.innerHTML = html;
+        }
+
+        // ============================================
+        // GERENCIAMENTO DA ÁREA DO PROFESSOR
+        // ============================================
+
+        // Variável para manter o professor logado
+        let professorLogado = null;
+
+        /**
+         * Realiza o login do professor
+         * @param {string} usuario - Usuário do professor
+         * @param {string} senha - Senha do professor
+         */
+        function fazerLoginProfessor(usuario, senha) {
+            const professores = dados.obter(dados.chaves.professores) || [];
+            const professor = professores.find(p => p.usuario === usuario && p.senha === senha);
+
+            if (!professor) {
+                exibirAlerta('alerta-login-professor', 'Usuário ou senha incorretos!', 'erro');
+                return;
+            }
+
+            professorLogado = professor;
+            document.getElementById('tela-login-professor').style.display = 'none';
+            document.getElementById('painel-professor').style.display = 'block';
+
+            // Preenche os dados do professor
+            document.getElementById('nome-professor').textContent = professor.nome;
+
+            // Preenche o select de turmas
+            const turmas = dados.obter(dados.chaves.turmas) || [];
+            const selectTurma = document.getElementById('turma-aviso');
+            selectTurma.innerHTML = '<option value="">Selecione...</option>';
+            turmas.forEach(turma => {
+                selectTurma.innerHTML += `<option value="${turma}">${turma}</option>`;
+            });
+
+            // Renderiza a tabela de avisos
+            renderizarTabelaAvisos();
+            limparFormulario('formulario-login-professor');
+            exibirAlerta('alerta-login-professor', '', 'info', 0);
+        }
+
+        /**
+         * Faz logout do professor
+         */
+        function fazerLogoutProfessor() {
+            professorLogado = null;
+            document.getElementById('tela-login-professor').style.display = 'block';
+            document.getElementById('painel-professor').style.display = 'none';
+            limparFormulario('formulario-login-professor');
+        }
+
+        /**
+         * Envia um novo aviso do professor
+         * @param {Object} avisoData - Dados do aviso
+         */
+        function enviarAviso(avisoData) {
+            // Valida os dados
+            if (!avisoData.titulo || !avisoData.data || !avisoData.descricao || !avisoData.tipo || !avisoData.turma) {
+                exibirAlerta('alerta-novo-aviso', 'Preencha todos os campos obrigatórios!', 'erro');
+                return;
+            }
+
+            // Se for aluno específico, valida a matrícula
+            if (avisoData.matriculaAluno) {
+                const alunos = dados.obter(dados.chaves.alunos) || [];
+                if (!alunos.find(a => a.matricula === avisoData.matriculaAluno)) {
+                    exibirAlerta('alerta-novo-aviso', 'Matrícula do aluno não encontrada!', 'erro');
+                    return;
+                }
+            }
+
+            // Cria o objeto do aviso
+            const novoAviso = {
+                id: Date.now(),
+                titulo: avisoData.titulo,
+                data: avisoData.data,
+                descricao: avisoData.descricao,
+                tipo: avisoData.tipo,
+                turma: avisoData.turma,
+                matriculaAluno: avisoData.matriculaAluno || null,
+                professor: professorLogado.nome
+            };
+
+            // Salva o aviso
+            const avisos = dados.obter(dados.chaves.avisos) || [];
+            avisos.push(novoAviso);
+            dados.salvar(dados.chaves.avisos, avisos);
+
+            // Limpa o formulário e exibe mensagem de sucesso
+            limparFormulario('formulario-novo-aviso');
+            exibirAlerta('alerta-novo-aviso', 'Aviso enviado com sucesso!', 'sucesso');
+
+            // Atualiza a tabela de avisos
+            renderizarTabelaAvisos();
+
+            // Limpa o campo de aluno específico
+            document.getElementById('grupo-matricula-professor').style.display = 'none';
+            document.getElementById('matricula-aluno').value = '';
+            document.getElementById('enviar-aluno-especifico').checked = false;
+        }
+
+        /**
+         * Deleta um aviso
+         * @param {number} avisoId - ID do aviso a deletar
+         */
+        function deletarAviso(avisoId) {
+            if (!confirm('Tem certeza que deseja deletar este aviso?')) return;
+
+            let avisos = dados.obter(dados.chaves.avisos) || [];
+            avisos = avisos.filter(a => a.id !== avisoId);
+            dados.salvar(dados.chaves.avisos, avisos);
+
+            renderizarTabelaAvisos();
+            exibirAlerta('alerta-novo-aviso', 'Aviso deletado com sucesso!', 'sucesso');
+        }
+
+        /**
+         * Renderiza a tabela de avisos enviados pelo professor
+         */
+        function renderizarTabelaAvisos() {
+            const tbody = document.getElementById('corpo-tabela-avisos');
+            const avisos = dados.obter(dados.chaves.avisos) || [];
+
+            // Filtra apenas os avisos do professor logado
+            const avisosDoProfessor = avisos.filter(a => a.professor === professorLogado.nome);
+
+            if (avisosDoProfessor.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 2rem;">
+                            Nenhum aviso enviado ainda
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = avisosDoProfessor.map(aviso => `
+                <tr>
+                    <td class="titulo-avisos">${aviso.titulo}</td>
+                    <td>${formatarData(aviso.data)}</td>
+                    <td><span class="tipo-aviso ${aviso.tipo}">${aviso.tipo}</span></td>
+                    <td>${aviso.matriculaAluno ? `Aluno: ${aviso.matriculaAluno}` : aviso.turma}</td>
+                    <td>
+                        <div class="acoes-tabela">
+                            <button class="btn-deletar" onclick="deletarAviso(${aviso.id})">
+                                <i class="fas fa-trash"></i> Deletar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // ============================================
+        // EVENT LISTENERS - NAVEGAÇÃO PRINCIPAL
+        // ============================================
+
+        // Botões de navegação principal
+        document.querySelectorAll('.btn-nav').forEach(botao => {
+            botao.addEventListener('click', function() {
+                const secao = this.dataset.secao;
+                mostrarSecao(secao);
+            });
+        });
+
+        // ============================================
+        // EVENT LISTENERS - PÁGINA INICIAL
+        // ============================================
+
+        // Navegação do calendário público
+        document.getElementById('btn-mes-anterior').addEventListener('click', function() {
+            calendarioPublico.mesAnterior();
+            renderizarCalendarioPublico();
+        });
+
+        document.getElementById('btn-mes-proximo').addEventListener('click', function() {
+            calendarioPublico.proximoMes();
+            renderizarCalendarioPublico();
+        });
+
+        // Fechar modal de eventos
+        document.getElementById('btn-fechar-modal').addEventListener('click', fecharModalEvento);
+        document.getElementById('modal-evento').addEventListener('click', function(e) {
+            if (e.target === this) fecharModalEvento();
+        });
+
+        // ============================================
+        // EVENT LISTENERS - ÁREA DO ESTUDANTE
+        // ============================================
+
+        // Login do estudante
+        document.getElementById('formulario-login-estudante').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const matricula = document.getElementById('matricula').value.trim();
+            fazerLoginEstudante(matricula);
+        });
+
+        // Logout do estudante
+        document.getElementById('btn-sair-estudante').addEventListener('click', fazerLogoutEstudante);
+
+        // Navegação do calendário do estudante
+        document.getElementById('btn-mes-anterior-estudante').addEventListener('click', function() {
+            calendarioEstudante.mesAnterior();
+            renderizarCalendarioEstudante();
+        });
+
+        document.getElementById('btn-mes-proximo-estudante').addEventListener('click', function() {
+            calendarioEstudante.proximoMes();
+            renderizarCalendarioEstudante();
+        });
+
+        // ============================================
+        // EVENT LISTENERS - ÁREA DO PROFESSOR
+        // ============================================
+
+        // Login do professor
+        document.getElementById('formulario-login-professor').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const usuario = document.getElementById('usuario').value.trim();
+            const senha = document.getElementById('senha').value;
+            fazerLoginProfessor(usuario, senha);
+        });
+
+        // Logout do professor
+        document.getElementById('btn-sair-professor').addEventListener('click', fazerLogoutProfessor);
+
+        // Checkbox para aluno específico
+        document.getElementById('enviar-aluno-especifico').addEventListener('change', function() {
+            const grupo = document.getElementById('grupo-matricula-professor');
+            grupo.style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Envio de novo aviso
+        document.getElementById('formulario-novo-aviso').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const avisoData = {
+                titulo: document.getElementById('titulo-aviso').value,
+                data: document.getElementById('data-aviso').value,
+                descricao: document.getElementById('descricao-aviso').value,
+                tipo: document.getElementById('tipo-aviso').value,
+                turma: document.getElementById('turma-aviso').value,
+                matriculaAluno: document.getElementById('enviar-aluno-especifico').checked
+                    ? document.getElementById('matricula-aluno').value
+                    : null
+            };
+
+            enviarAviso(avisoData);
+        });
+
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+
+        /**
+         * Inicializa a aplicação
+         * Renderiza todos os componentes da página inicial
+         */
+        async function inicializar() {
+            await dados.pronto;
+            console.log('Portal Escolar iniciado com sucesso!');
+            renderizarNoticias();
+            renderizarCalendarioPublico();
+            renderizarBiblioteca();
+
+            // Define data mínima do date picker para hoje
+            const hoje = new Date().toISOString().split('T')[0];
+            document.getElementById('data-aviso').min = hoje;
+        }
+
+        // Executa a inicialização quando a página carrega
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', inicializar);
+        } else {
+            inicializar();
+        }
+    </script>
+</body>
+
+</html>

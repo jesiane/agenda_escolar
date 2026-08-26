@@ -1,0 +1,1037 @@
+
+        /* ============================================
+           VARIÁVEIS E ESTILOS GLOBAIS
+           ============================================ */
+       
+        :root {
+            --cor-primaria: #7E8C54;      /* Azul escuro */
+            --cor-secundaria: #505e2f;    /* Azul médio */
+            --cor-destaque: #ff6b6b;      /* Vermelho */
+            --cor-sucesso: #51cf66;       /* Verde */
+            --cor-aviso: #ffd43b;         /* Amarelo */
+            --cor-fundo: #f5f7fa;         /* Cinza claro */
+            --cor-texto: #2c3e50;         /* Texto escuro */
+            --cor-borda: #e0e0e0;         /* Borda */
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --sombra-forte: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           LAYOUT PRINCIPAL - NAVEGAÇÃO E ESTRUTURA
+           ============================================ */
+
+        .container-app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabeçalho/Header principal */
+        header {
+            background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--sombra-forte);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-escola {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-escola i {
+            font-size: 2rem;
+        }
+
+        .logo-escola h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo-escola p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        /* Menu de navegação principal */
+        .nav-principal {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid transparent;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover,
+        .btn-nav.ativo {
+            background: white;
+            color: var(--cor-primaria);
+            border-color: white;
+        }
+
+        /* Seções principais (abas) */
+        .secao {
+            display: none;
+            flex: 1;
+            padding: 2rem;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .secao.ativa {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           COMPONENTES COMUNS
+           ============================================ */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--sombra-forte);
+        }
+
+        .botao {
+            background: var(--cor-primaria);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .botao:hover {
+            background: var(--cor-secundaria);
+            transform: scale(1.05);
+        }
+
+        .botao-secundario {
+            background: white;
+            color: var(--cor-primaria);
+            border: 2px solid var(--cor-primaria);
+        }
+
+        .botao-secundario:hover {
+            background: var(--cor-primaria);
+            color: white;
+        }
+
+        .botao-pequeno {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .botao-perigo {
+            background: var(--cor-destaque);
+        }
+
+        .botao-perigo:hover {
+            background: #ff5252;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--cor-texto);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--cor-primaria);
+            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .alerta {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .alerta.visivel {
+            display: block;
+        }
+
+        .alerta-sucesso {
+            background-color: rgba(81, 207, 102, 0.1);
+            color: #2d5016;
+            border-left: 4px solid var(--cor-sucesso);
+        }
+
+        .alerta-erro {
+            background-color: rgba(255, 107, 107, 0.1);
+            color: #7d2828;
+            border-left: 4px solid var(--cor-destaque);
+        }
+
+        .alerta-info {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: #1e3c72;
+            border-left: 4px solid var(--cor-primaria);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           MODAL/POPUP
+           ============================================ */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.visivel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-conteudo {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--sombra-forte);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 1rem;
+        }
+
+        .modal-cabecalho h2 {
+            margin: 0;
+            color: var(--cor-primaria);
+        }
+
+        .fechar-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--cor-texto);
+            transition: color 0.3s ease;
+        }
+
+        .fechar-modal:hover {
+            color: var(--cor-primaria);
+        }
+
+        /* ============================================
+           PÁGINA INICIAL (PÚBLICA)
+           ============================================ */
+
+        .secao-publica {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .titulo-secao {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--cor-primaria);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .titulo-secao i {
+            color: var(--cor-destaque);
+        }
+
+        .secao-conteudo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Notícias */
+        .noticia {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .noticia:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-forte);
+        }
+
+        .noticia-imagem {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .noticia-corpo {
+            padding: 1.5rem;
+        }
+
+        .noticia-data {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .noticia-titulo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--cor-primaria);
+            margin-bottom: 0.8rem;
+        }
+
+        .noticia-resumo {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Calendário */
+        .calendario-publica {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+        }
+
+        .calendario-cabecalho {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendario-cabecalho button {
+            background: var(--cor-primaria);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .calendario-cabecalho button:hover {
+            background: var(--cor-secundaria);
+        }
+
+        .calendario-mes-ano {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--cor-primaria);
+        }
+
+        /* Grade do calendário */
+        .calendario-dias {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .dia-semana {
+            text-align: center;
+            font-weight: 600;
+            color: var(--cor-primaria);
+            padding: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+
+        .dia {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            background: white;
+            min-height: 60px;
+        }
+
+        .dia:hover {
+            background: var(--cor-fundo);
+            border-color: var(--cor-primaria);
+        }
+
+        .dia.outro-mes {
+            color: #ccc;
+            background: #fafafa;
+            cursor: default;
+        }
+
+        .dia.outro-mes:hover {
+            background: #fafafa;
+            border-color: var(--cor-borda);
+        }
+
+        .dia.com-evento::after {
+            content: '';
+            position: absolute;
+            bottom: 3px;
+            width: 6px;
+            height: 6px;
+            background: var(--cor-destaque);
+            border-radius: 50%;
+        }
+
+        .dia.hoje {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            font-weight: 600;
+        }
+
+        .dia.hoje::after {
+            background: white;
+        }
+
+        /* Horários da Biblioteca */
+        .biblioteca-card {
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--sombra-forte);
+        }
+
+        .biblioteca-titulo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .biblioteca-horarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .horario-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .horario-dia {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .horario-tempo {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ============================================
+           ÁREA DO ESTUDANTE
+           ============================================ */
+
+        .tela-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+        }
+
+        .formulario-login {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: var(--sombra-forte);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .formulario-login h2 {
+            margin-bottom: 0.5rem;
+            color: var(--cor-primaria);
+            font-size: 1.8rem;
+        }
+
+        .formulario-login p {
+            margin-bottom: 2rem;
+            color: #999;
+        }
+
+        .painel-usuario {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--sombra);
+        }
+
+        .cabecalho-usuario {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--cor-borda);
+        }
+
+        .info-usuario {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cor-primaria), var(--cor-secundaria));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .dados-usuario h3 {
+            margin: 0;
+            color: var(--cor-primaria);
+            font-size: 1.1rem;
+        }
+
+        .dados-usuario p {
+            margin: 0.2rem 0;
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .btn-sair {
+            background: var(--cor-destaque);
+        }
+
+        /* Calendário Pessoal */
+        .calendarios-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .calendarios-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Horário de aulas */
+        .horario-aulas {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+        }
+
+        .tabela-horarios {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .tabela-horarios thead {
+            background: var(--cor-primaria);
+            color: white;
+        }
+
+        .tabela-horarios th,
+        .tabela-horarios td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .tabela-horarios tbody tr:hover {
+            background: var(--cor-fundo);
+        }
+
+        .horario-materia {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .horario-tempo {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .horario-materia-nome {
+            font-weight: 600;
+            color: var(--cor-primaria);
+        }
+
+        /* Lista de lembretes */
+        .lista-lembretes {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+        }
+
+        .lembrete-item {
+            background: var(--cor-fundo);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--cor-primaria);
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            transition: all 0.3s ease;
+        }
+
+        .lembrete-item:hover {
+            box-shadow: var(--sombra);
+            transform: translateX(5px);
+        }
+
+        .lembrete-conteudo {
+            flex: 1;
+        }
+
+        .lembrete-tipo {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .lembrete-tipo.prova {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .lembrete-tipo.trabalho {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .lembrete-tipo.atividade {
+            background: rgba(81, 207, 102, 0.2);
+            color: #51cf66;
+        }
+
+        .lembrete-tipo.aviso {
+            background: rgba(30, 60, 114, 0.2);
+            color: #1e3c72;
+        }
+
+        .lembrete-tipo.recado {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9c27b0;
+        }
+
+        .lembrete-titulo {
+            font-weight: 600;
+            color: var(--cor-primaria);
+            margin-bottom: 0.3rem;
+        }
+
+        .lembrete-descricao {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .lembrete-data {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .lembrete-acao {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* ============================================
+           ÁREA DO PROFESSOR
+           ============================================ */
+
+        .formulario-professor {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+            margin-bottom: 2rem;
+        }
+
+        .grid-formulario {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid-formulario.completo {
+            grid-template-columns: 1fr;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        /* Avisos enviados */
+        .tabela-avisos {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+        }
+
+        .tabela-avisos thead {
+            background: var(--cor-primaria);
+            color: white;
+        }
+
+        .tabela-avisos th,
+        .tabela-avisos td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--cor-borda);
+        }
+
+        .tabela-avisos tbody tr:hover {
+            background: var(--cor-fundo);
+        }
+
+        .tabela-avisos tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .titulo-avisos {
+            font-weight: 600;
+            color: var(--cor-primaria);
+            max-width: 300px;
+        }
+
+        .tipo-aviso {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tipo-aviso.prova {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .tipo-aviso.trabalho {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .tipo-aviso.atividade {
+            background: rgba(81, 207, 102, 0.2);
+            color: #51cf66;
+        }
+
+        .tipo-aviso.aviso {
+            background: rgba(30, 60, 114, 0.2);
+            color: #1e3c72;
+        }
+
+        .tipo-aviso.recado {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9c27b0;
+        }
+
+        .acoes-tabela {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .acoes-tabela button {
+            padding: 0.5rem 0.8rem;
+            font-size: 0.85rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-editar {
+            background: rgba(30, 60, 114, 0.1);
+            color: var(--cor-primaria);
+        }
+
+        .btn-editar:hover {
+            background: var(--cor-primaria);
+            color: white;
+        }
+
+        .btn-deletar {
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--cor-destaque);
+        }
+
+        .btn-deletar:hover {
+            background: var(--cor-destaque);
+            color: white;
+        }
+
+        /* ============================================
+           RESPONSIVIDADE
+           ============================================ */
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-escola h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-principal {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn-nav {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .secao {
+                padding: 1rem;
+            }
+
+            .titulo-secao {
+                font-size: 1.5rem;
+            }
+
+            .secao-conteudo {
+                grid-template-columns: 1fr;
+            }
+
+            .formulario-login {
+                padding: 2rem;
+            }
+
+            .calendarios-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tabla-horarios,
+            .tabela-avisos {
+                font-size: 0.85rem;
+            }
+
+            .tabela-horarios th,
+            .tabela-horarios td,
+            .tabela-avisos th,
+            .tabela-avisos td {
+                padding: 0.7rem;
+            }
+
+            .titulo-avisos {
+                max-width: 150px;
+            }
+
+            .grid-formulario {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo-escola i {
+                font-size: 1.5rem;
+            }
+
+            .logo-escola h1 {
+                font-size: 1rem;
+            }
+
+            .logo-escola p {
+                display: none;
+            }
+
+            .nav-principal {
+                gap: 0.5rem;
+            }
+
+            .btn-nav {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .titulo-secao {
+                font-size: 1.2rem;
+            }
+
+            .formulario-login {
+                padding: 1.5rem;
+            }
+
+            .dia {
+                min-height: 50px;
+                font-size: 0.8rem;
+            }
+
+            .biblioteca-horarios {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-conteudo {
+                padding: 1.5rem;
+                width: 95%;
+            }
+        }
+    
